@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  :root {
+    --atmosphere-bg: #ffffff;
+    --atmosphere-text: #1d1d1f;
+    --atmosphere-accent: #007aff;
+    --atmosphere-secondary: #86868b;
+    --atmosphere-glow: transparent;
+    --atmosphere-grid: rgba(0,0,0,0.03);
+    --atmosphere-font: var(--font-sans);
+  }
+
+  /* Engineering Mode / Cold Metallic */
+  [data-atmosphere="engineering"] {
+    --atmosphere-bg: #0d0d0e;
+    --atmosphere-text: #e1e1e6;
+    --atmosphere-accent: #0a84ff;
+    --atmosphere-secondary: #636366;
+    --atmosphere-glow: rgba(10, 132, 255, 0.05);
+    --atmosphere-grid: rgba(255, 255, 255, 0.03);
+    --atmosphere-font: var(--font-mono);
+  }
+
+  /* Literature / Warm Paper - Refined for Night/Reading Comfort */
+  [data-atmosphere="literature"] {
+    --atmosphere-bg: #f9f6f1;
+    --atmosphere-text: #2c2c2e;
+    --atmosphere-accent: #a08060;
+    --atmosphere-secondary: #8b8b8b;
+    --atmosphere-glow: transparent;
+    --atmosphere-grid: transparent;
+    --atmosphere-font: var(--font-sans);
+  }
+
+  /* Night Comfort / Soft Muted */
+  [data-atmosphere="night"] {
+    --atmosphere-bg: #161616;
+    --atmosphere-text: #a0a0a0;
+    --atmosphere-accent: #5e5e5e;
+    --atmosphere-secondary: #404040;
+    --atmosphere-glow: rgba(255, 255, 255, 0.01);
+    --atmosphere-grid: rgba(255, 255, 255, 0.01);
+    --atmosphere-font: var(--font-sans);
+  }
+
+  /* AI Systems / Neon Glass - Restrained */
+  [data-atmosphere="ai"] {
+    --atmosphere-bg: #050508;
+    --atmosphere-text: #e0e0e0;
+    --atmosphere-accent: #2e8b57;
+    --atmosphere-secondary: #4a5d4e;
+    --atmosphere-glow: rgba(46, 139, 87, 0.05);
+    --atmosphere-grid: radial-gradient(circle at 50% 50%, rgba(46, 139, 87, 0.02) 0%, transparent 60%);
+    --atmosphere-font: var(--font-sans);
+  }
+
+  /* Reality-Responsive Layers (Phase 81 - 110) */
+  [data-pressure="high"] {
+    --motion-scale: 0.5;
+    --interface-blur: 8px;
+    --focus-opacity: 0.05;
+  }
+
+  [data-pressure="low"] {
+    --motion-scale: 1.2;
+    --interface-blur: 0px;
+    --focus-opacity: 1;
+  }
+
+  /* Environmental Conditions - GPU Optimized */
+  [data-weather="rainy"]::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.2) 100%);
+    pointer-events: none;
+    z-index: 50;
+    mix-blend-mode: multiply;
+    animation: rain-mist 15s infinite alternate ease-in-out;
+    transform: translateZ(0); /* Hardware acceleration */
+  }
+
+  @keyframes rain-mist {
+    from { opacity: 0.1; }
+    to { opacity: 0.3; }
+  }
+
+  body {
+    @apply transition-[background-color,color] duration-1000 ease-in-out antialiased;
+    background-color: var(--atmosphere-bg);
+    color: var(--atmosphere-text);
+  }
+
+  input, textarea {
+    font-family: var(--atmosphere-font);
+  }
+}
+
+.atmosphere-active {
+  background: var(--atmosphere-bg);
+  color: var(--atmosphere-text);
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.atmosphere-grid-pattern {
+  background-image: linear-gradient(var(--atmosphere-grid) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--atmosphere-grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle, var(--tw-content));
+}
+
+.markdown-body {
+  @apply text-[25px] leading-[1.6] font-sans max-w-none;
+  color: #1d1d1f;
+}
+
+.lined-paper {
+  background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 100% 2.2rem;
+  background-attachment: local;
+}
+
+.markdown-body u {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  @apply decoration-black/20;
+}
+
+.markdown-body p {
+  @apply mb-6 last:mb-0;
+}
+
+.markdown-body h1 {
+  @apply font-sans font-extrabold text-3xl tracking-tight text-black mt-12 mb-6 first:mt-0 leading-tight;
+}
+
+.markdown-body h2 {
+  @apply font-sans font-bold text-xl tracking-tight text-black mt-10 mb-4 leading-tight;
+}
+
+.markdown-body hr {
+  @apply my-12 border-none h-[1px] bg-black/[0.04];
+}
+
+/* Subtle Realistic Texture for Canvas - Phase 313 */
+.canvas-texture {
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Spatial Grid for Writing Lanes - Phase 242 */
+.writing-lane-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0,0,0,0.01) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.01) 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+.prose-slate {
+  --tw-prose-body: var(--atmosphere-text);
+  --tw-prose-headings: var(--atmosphere-text);
+}
+

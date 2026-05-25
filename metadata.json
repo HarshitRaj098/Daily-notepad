@@ -1,0 +1,6 @@
+{
+  "name": "Note Vault Studio",
+  "description": "A calm, writing-first spatial workspace for professional notes, markup, and journaling. Fast, precise, and visually stable.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
